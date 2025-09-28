@@ -1,0 +1,11 @@
+:root {
+  --primary-color: #0077b6;
+  --primary-color-tint: #d5e8f3;
+  --primary-color-shade: #00141e;
+}
+
+.App {
+  max-width: 130rem;
+  color: var(--primary-color);
+  margin: 0 auto;
+}
