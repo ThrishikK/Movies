@@ -1,0 +1,13 @@
+form {
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.search-input {
+  padding: 1rem;
+  width: 35rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid var(--primary-color-shade);
+  font-family: inherit;
+  font-size: 1.8rem;
+}

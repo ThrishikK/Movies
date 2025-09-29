@@ -1,0 +1,14 @@
+.heading-typing {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  /* border-right: 2px solid black; */
+  width: 0;
+  animation: typing 0.8s steps(var(--steps)) forwards;
+}
+
+@keyframes typing {
+  to {
+    width: var(--final-width);
+  }
+}
