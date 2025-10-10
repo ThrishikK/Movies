@@ -1,0 +1,27 @@
+.loader-container {
+  height: 100%;
+  width: 100%;
+  /*  */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: animloader 1s linear infinite;
+}
+
+@keyframes animloader {
+  0% {
+    box-shadow: -72px 0 var(--primary-color-tint) inset;
+  }
+  100% {
+    box-shadow: 48px 0 var(--primary-color-tint) inset;
+  }
+}

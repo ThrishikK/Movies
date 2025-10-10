@@ -1,0 +1,6 @@
+.search-result-movie-container {
+  width: 52rem;
+  background-color: var(--primary-color-shade);
+  height: 18rem;
+  border-radius: 0.5rem;
+}

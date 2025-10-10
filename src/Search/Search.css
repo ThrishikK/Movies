@@ -1,3 +1,6 @@
+.search-section-container {
+}
+
 form {
   margin-left: 1rem;
   margin-top: 1rem;
@@ -10,4 +13,30 @@ form {
   border: 0.1rem solid var(--primary-color-shade);
   font-family: inherit;
   font-size: 1.8rem;
+}
+
+.movie-results-container {
+  margin: 1rem auto;
+  width: calc(100% - 10rem);
+  max-width: 120rem;
+  border-radius: 1rem;
+  height: 50rem;
+  background-color: var(--primary-color-shade);
+  /*  */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 48em) {
+  .movie-results-container {
+    width: calc(100% - 8rem);
+  }
+}
+
+@media (max-width: 31.25em) {
+  .movie-results-container {
+    width: calc(100% - 5rem);
+  }
 }
