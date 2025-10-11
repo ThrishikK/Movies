@@ -1,9 +1,9 @@
 import "./EmptyContainer.css";
 
-function EmptyContainer() {
+function EmptyContainer({ message }) {
   return (
     <div className="empty-container">
-      <h2>Search any movie name for details</h2>
+      <h2>{message}</h2>
     </div>
   );
 }

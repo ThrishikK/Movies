@@ -1,0 +1,12 @@
+.error-container {
+  background-color: var(--primary-color-tint);
+  width: calc(100% - 10rem);
+  height: calc(10rem + 3vw);
+  color: var(--primary-color-shade);
+  border-radius: 1rem;
+  /*  */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

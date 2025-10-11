@@ -1,37 +1,75 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { MovieContext } from "../context/MovieContext";
 
 import HeadingH1 from "../HeadingH1/HeadingH1";
 import Loader from "../Loader/Loader";
 import EmptyContainer from "../EmptyContainer/EmptyContainer";
+import ErrorContainer from "../ErrorContainer/ErrorContainer";
 import SearchResultContainer from "../SearchResultContainer/SearchResultContainer";
 
 import "./Search.css";
 import "../HelperStyles/HelperStyles.css";
 
+const APIKEY = "885b416e";
+
+const urlBySearch = `https://www.omdbapi.com/?apikey=${APIKEY}&s=`;
+
 function Search() {
   const { state, dispatch } = useContext(MovieContext);
 
-  const { isLoading, searchInput } = state;
+  const {
+    isLoading,
+    errorFlag,
+    searchInput,
+    searchedResultMovies,
+    errorMessage,
+    lessThan3CharInput,
+  } = state;
 
-  const roughData = [
-    {
-      Title: "Interstellar",
-      Year: "2014",
-      imdbID: "tt0816692",
-      Type: "movie",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_SX300.jpg",
+  useEffect(
+    function () {
+      const controller = new AbortController();
+      async function fetchMovies() {
+        try {
+          dispatch({ type: "LOADING_STATE", payload: true });
+
+          const res = await fetch(`${urlBySearch}&s=${searchInput}`, {
+            signal: controller.signal,
+          });
+          console.log(res.ok);
+          if (!res.ok) throw new Error("Something went wrong!!!");
+          const data = await res.json();
+          if (data.Response === "False") throw new Error("Movie not found");
+          // console.log(data);
+          dispatch({ type: "SEARCH_RESULTS", payload: data.Search });
+        } catch (err) {
+          if (err.name !== "AbortError") {
+            console.log(err.message);
+            dispatch({ type: "ERROR_OCCURED", payload: err.message });
+          }
+        } finally {
+          dispatch({ type: "LOADING_STATE", payload: false });
+        }
+      }
+
+      if (searchInput.length === 0) {
+        dispatch({ type: "EMPTY_INPUT" });
+        return;
+      }
+
+      if (searchInput.length >= 1 && searchInput.length < 3) {
+        dispatch({ type: "LESS_THAN_3_CHAR_INPUT" });
+        return;
+      }
+
+      fetchMovies();
+
+      return function () {
+        controller.abort();
+      };
     },
-    {
-      Title: "The Science of Interstellar",
-      Year: "2014",
-      imdbID: "tt4415360",
-      Type: "movie",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BZDU5NTJkMjQtNGYyZC00NjYwLWJlNWMtODk5NDI5MDE3NDJiXkEyXkFqcGc@._V1_SX300.jpg",
-    },
-  ];
+    [searchInput, dispatch]
+  );
 
   return (
     <section className="search-section-container">
@@ -49,7 +87,20 @@ function Search() {
       </form>
       {/* RESULTS */}
       <div className="movie-results-container">
-        <SearchResultContainer />
+        {searchInput.length === 0 && !lessThan3CharInput && (
+          <EmptyContainer message={"Search any movie name for details"} />
+        )}
+        {lessThan3CharInput && (
+          <EmptyContainer message={"Please enter at least 3 characters"} />
+        )}
+        {isLoading && <Loader />}
+        {errorFlag && <ErrorContainer errorMessage={errorMessage} />}
+        {!isLoading &&
+          !errorFlag &&
+          searchInput &&
+          searchedResultMovies.length > 0 && (
+            <SearchResultContainer movies={searchedResultMovies} />
+          )}
       </div>
     </section>
   );

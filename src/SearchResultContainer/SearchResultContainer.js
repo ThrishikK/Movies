@@ -1,15 +1,12 @@
 import SearchResultMovie from "../SearchResultMovie/SearchResultMovie";
 import "./SearchResultContainer.css";
 
-function SearchResultContainer() {
+function SearchResultContainer({ movies }) {
   return (
     <div className="search-results-container">
-      <SearchResultMovie />
-      <SearchResultMovie />
-      <SearchResultMovie />
-      <SearchResultMovie />
-      <SearchResultMovie />
-      <SearchResultMovie />
+      {movies.map((movie) => (
+        <SearchResultMovie key={movie.imdbID} movie={movie} />
+      ))}
     </div>
   );
 }
