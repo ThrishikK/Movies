@@ -1,0 +1,21 @@
+.watched-movies-section {
+  width: 100%;
+  height: 100vh;
+}
+
+.watched-movies-container {
+  max-width: 120rem;
+  margin: 1rem auto;
+  width: calc(100% - 10rem);
+  background-color: var(--primary-color-shade);
+  height: calc(100% - 10rem);
+  overflow-y: auto;
+  padding: 1rem;
+  /*  */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+  flex-wrap: wrap;
+  gap: 1rem;
+}

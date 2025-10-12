@@ -11,6 +11,7 @@ button {
   font-weight: bold;
   cursor: pointer;
   height: 4rem;
+  border: 0;
 }
 
 button:hover {

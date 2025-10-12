@@ -1,7 +1,13 @@
-import { error } from "ajv/dist/vocabularies/applicator/dependencies";
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 const MovieContext = createContext();
+
+const storedData = JSON.parse(localStorage.getItem("movies")) ?? {
+  watchedMovies: [],
+  likedMovies: [],
+};
+
+localStorage.setItem("movies", JSON.stringify(storedData));
 
 const initialState = {
   isLoading: false,
@@ -10,6 +16,8 @@ const initialState = {
   searchInput: "",
   searchedResultMovies: [],
   lessThan3CharInput: false,
+  watchedMovies: storedData.watchedMovies,
+  likedMovies: storedData.likedMovies,
 };
 
 function reducer(state, action) {
@@ -26,7 +34,6 @@ function reducer(state, action) {
       return { ...state, errorFlag: true, errorMessage: action.payload };
     case "SET_INPUT":
       return { ...state, searchInput: action.payload, isLoading: false };
-
     case "SEARCH_RESULTS":
       return {
         ...state,
@@ -41,7 +48,6 @@ function reducer(state, action) {
         errorFlag: false,
         errorMessage: "",
       };
-
     case "LESS_THAN_3_CHAR_INPUT":
       return {
         ...state,
@@ -51,6 +57,18 @@ function reducer(state, action) {
         isLoading: false,
         lessThan3CharInput: true,
       };
+    case "ADD_TO_WATCHED":
+      return {
+        ...state,
+        watchedMovies: [...state.watchedMovies, action.payload],
+      };
+    case "REMOVE_FROM_WATCHED":
+      return {
+        ...state,
+        watchedMovies: state.watchedMovies.filter(
+          (movie) => movie.imdbID !== action.payload
+        ),
+      };
 
     default:
       return state;
@@ -59,6 +77,19 @@ function reducer(state, action) {
 
 function MovieProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(
+    function () {
+      const dataToStore = {
+        watchedMovies: state.watchedMovies,
+        likedMovies: state.likedMovies,
+      };
+
+      localStorage.setItem("movies", JSON.stringify(dataToStore));
+    },
+    [state.watchedMovies, state.likedMovies]
+  );
+
   return (
     <MovieContext.Provider value={{ state, dispatch }}>
       {children}

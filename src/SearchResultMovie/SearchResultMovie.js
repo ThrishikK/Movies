@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import { MovieContext } from "../context/MovieContext";
+
 import "./SearchResultMovie.css";
 
 function SearchResultMovie({ movie }) {
+  const { state, dispatch } = useContext(MovieContext);
+
   return (
     <div className="search-result-movie-container">
       <div className="movie-text-container">
@@ -37,7 +42,12 @@ function SearchResultMovie({ movie }) {
         </div>
         {/* buttons container */}
         <div className="btns-container">
-          <button>Add to Watched</button> <button>Add to Liked</button>
+          <button
+            onClick={() => dispatch({ type: "ADD_TO_WATCHED", payload: movie })}
+          >
+            Add to Watched
+          </button>{" "}
+          <button>Add to Liked</button>
           <button>More Details</button>
         </div>
       </div>
