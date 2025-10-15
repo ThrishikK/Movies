@@ -69,6 +69,18 @@ function reducer(state, action) {
           (movie) => movie.imdbID !== action.payload
         ),
       };
+    case "ADD_TO_LIKED":
+      return {
+        ...state,
+        likedMovies: [...state.likedMovies, action.payload],
+      };
+    case "REMOVE_FROM_LIKED":
+      return {
+        ...state,
+        likedMovies: state.likedMovies.filter(
+          (movie) => movie.imdbID !== action.payload
+        ),
+      };
 
     default:
       return state;

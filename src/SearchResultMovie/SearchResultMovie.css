@@ -69,3 +69,14 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+.already-watched {
+  background-color: var(--primary-color);
+  color: var(--primary-color-tint);
+}
+
+.already-watched:hover {
+  background-color: var(--primary-color-shade);
+  color: var(--primary-color-tint);
+  cursor: not-allowed;
+}

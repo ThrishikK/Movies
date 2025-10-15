@@ -1,0 +1,70 @@
+.liked-movie-details {
+  /* background-color: var(--primary-color-tint); */
+  background: linear-gradient(
+    to bottom right,
+    var(--primary-color-shade),
+    var(--primary-color-tint)
+  );
+  color: var(--primary-color-shade);
+  width: calc(45%);
+  height: 30rem;
+  margin: 1rem;
+  padding: 1rem;
+  transition: transform 1s ease-in;
+  border-radius: 1rem;
+}
+
+.liked-movie-details:hover {
+  transform: translateY(-0.5rem);
+}
+
+@media (max-width: 43.75em) {
+  .liked-movie-details {
+    width: calc(80%);
+  }
+}
+
+.image-and-data-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  height: 80%;
+}
+
+.liked-movie-poster {
+  width: calc(35%);
+  height: 90%;
+}
+
+.liked-movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.liked-movie-data {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.liked-movie-data h2 {
+  font-size: 2.4rem;
+}
+
+.liked-movie-data-key {
+  font-weight: 700;
+  margin-right: 1rem;
+}
+
+.liked-movie-btns-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-evenly;
+}

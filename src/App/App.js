@@ -4,6 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import Search from "../Search/Search";
 import WatchedMovies from "../WatchedMovies/WatchedMovies";
 import LikedMovies from "../LikedMovies/LikedMovies";
+import RecommendedMovies from "../RecommendRelated/RecommendedMovies/RecommendedMovies";
 
 import "./App.css";
 import "./breakpoints.css";
@@ -18,6 +19,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/watched" element={<WatchedMovies />} />
             <Route path="/liked" element={<LikedMovies />} />
+            <Route path="/recommended" element={<RecommendedMovies />} />
           </Routes>
         </BrowserRouter>
       </MovieProvider>
