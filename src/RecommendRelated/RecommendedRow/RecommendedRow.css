@@ -4,14 +4,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   gap: 1rem;
   perspective: 100rem;
   overflow: hidden;
   width: 100%;
+  height: 45rem;
 }
 
 .carousel {
-  width: 35rem;
+  width: calc(35%);
   height: 35rem;
   transform-style: preserve-3d;
   position: relative;
@@ -27,15 +30,29 @@
 
 .carousel__images img {
   position: absolute;
-  width: 30rem;
+  width: 80%;
   height: 20rem;
   top: 7rem;
-  left: 2rem;
-  object-fit: cover;
+  left: 5rem;
+  object-fit: contain;
   border-radius: 1rem;
   box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+}
+
+@media (max-width: 37.5em) {
+  .carousel {
+    width: calc(90%);
+    height: 25rem;
+  }
+  .carousel__images {
+    width: 50%;
+  }
+  .carousel__images img {
+    top: 3rem;
+    left: 12rem;
+  }
 }
 
 /* Glow effect when hovered */

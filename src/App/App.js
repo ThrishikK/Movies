@@ -5,6 +5,7 @@ import Search from "../Search/Search";
 import WatchedMovies from "../WatchedMovies/WatchedMovies";
 import LikedMovies from "../LikedMovies/LikedMovies";
 import RecommendedMovies from "../RecommendRelated/RecommendedMovies/RecommendedMovies";
+import MovieFullDetailsContainer from "../DetailsRelated/MovieFullDetailsContainer/MovieFullDetailsContainer";
 
 import "./App.css";
 import "./breakpoints.css";
@@ -20,6 +21,7 @@ function App() {
             <Route path="/watched" element={<WatchedMovies />} />
             <Route path="/liked" element={<LikedMovies />} />
             <Route path="/recommended" element={<RecommendedMovies />} />
+            <Route path="//more-info" element={<MovieFullDetailsContainer />} />
           </Routes>
         </BrowserRouter>
       </MovieProvider>

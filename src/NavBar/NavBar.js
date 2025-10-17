@@ -27,6 +27,9 @@ function NavBar() {
         <li>
           <Link to="/recommended">Recommended</Link>
         </li>
+        <li>
+          <Link to="/more-info">More Info</Link>
+        </li>
       </ul>
       <div className="hamburger" onClick={handleHamburgerClick}>
         <span></span>

@@ -1,0 +1,20 @@
+.movie-full-details-section {
+  width: calc(100% - 10rem);
+  height: 85vh;
+  background-color: var(--primary-color-shade);
+  margin: 1rem auto;
+  padding: 2rem;
+  /*  */
+  display: flex;
+  flex-direction: column;
+  /* flex-shrink: 0; */
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 43.75em) {
+  .movie-full-details-section {
+    height: auto; /* ✅ allow full height on mobile */
+    padding: 1rem;
+  }
+}
