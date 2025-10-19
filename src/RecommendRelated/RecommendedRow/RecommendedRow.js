@@ -1,7 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { MovieContext } from "../../context/MovieContext";
+
 import "./RecommendedRow.css";
 
 function RecommendedRow({ movieNamesObject }) {
+  const { dispatch } = useContext(MovieContext);
+  const navigate = useNavigate();
   console.log(movieNamesObject);
 
   const total = movieNamesObject.movies.length;
@@ -47,6 +52,11 @@ function RecommendedRow({ movieNamesObject }) {
   }, []);
   //
 
+  function handleImageClick(imdbId) {
+    dispatch({ type: "SET_SELECTED_MOVIE_ID", payload: imdbId });
+    navigate("/more-info");
+  }
+
   return (
     <div className="recommended-movies-row">
       <h2>{movieNamesObject.name}</h2>
@@ -57,6 +67,7 @@ function RecommendedRow({ movieNamesObject }) {
             filterValue = positionsArray[i] !== 0 ? "0.5rem" : "0rem";
             return (
               <img
+                onClick={() => handleImageClick(eachImag.imdbId)}
                 className="carousel__images-picture"
                 key={eachImag.movieName}
                 src={`${eachImag.imgAddress}`}

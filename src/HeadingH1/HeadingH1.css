@@ -2,6 +2,7 @@
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
+  color: var(--primary-color-shade);
   /* border-right: 2px solid black; */
   width: 0;
   animation: typing 0.8s steps(var(--steps)) forwards;

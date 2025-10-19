@@ -3,14 +3,14 @@ import "./WatchedMovieDetails.css";
 import { MovieContext } from "../../context/MovieContext";
 // import "../HelperStyles/HelperStyles.css";
 
-const roughData = {
-  Title: "Interstellar",
-  Year: "2014",
-  imdbID: "tt0816692",
-  Type: "movie",
-  Poster:
-    "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_SX300.jpg",
-};
+// const roughData = {
+//   Title: "Interstellar",
+//   Year: "2014",
+//   imdbID: "tt0816692",
+//   Type: "movie",
+//   Poster:
+//     "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_SX300.jpg",
+// };
 
 function WatchedMovieDetails({ movie }) {
   const { dispatch } = useContext(MovieContext);
@@ -22,7 +22,7 @@ function WatchedMovieDetails({ movie }) {
           <img src={movie.Poster} alt={`${movie.Title} Poster`} />
         </div>
         <div className="watched-movie-data">
-          <h2>{movie.Title}</h2>
+          <h2 className="watched-movie-name">{movie.Title}</h2>
           <p>
             <span className="watched-movie-data-key">Year :</span>
             {movie.Year}
@@ -46,7 +46,13 @@ function WatchedMovieDetails({ movie }) {
         >
           Remove
         </button>
-        <button>More Info</button>
+        <button
+          onClick={() =>
+            dispatch({ type: "SET_SELECTED_MOVIE_ID", payload: movie.imdbID })
+          }
+        >
+          More Info
+        </button>{" "}
       </div>
     </div>
   );

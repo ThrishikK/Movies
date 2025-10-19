@@ -1,16 +1,17 @@
 import { useContext } from "react";
 import "./LikedMovieDetails.css";
 import { MovieContext } from "../../context/MovieContext";
+import { Link } from "react-router-dom";
 // import "../HelperStyles/HelperStyles.css";
 
-const roughData = {
-  Title: "Interstellar",
-  Year: "2014",
-  imdbID: "tt0816692",
-  Type: "movie",
-  Poster:
-    "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_SX300.jpg",
-};
+// const roughData = {
+//   Title: "Interstellar",
+//   Year: "2014",
+//   imdbID: "tt0816692",
+//   Type: "movie",
+//   Poster:
+//     "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_SX300.jpg",
+// };
 
 function LikedMovieDetails({ movie }) {
   const { dispatch } = useContext(MovieContext);
@@ -22,7 +23,7 @@ function LikedMovieDetails({ movie }) {
           <img src={movie.Poster} alt={`${movie.Title} Poster`} />
         </div>
         <div className="liked-movie-data">
-          <h2>{movie.Title}</h2>
+          <h2 className="liked-movie-name">{movie.Title}</h2>
           <p>
             <span className="liked-movie-data-key">Year :</span>
             {movie.Year}
@@ -46,7 +47,15 @@ function LikedMovieDetails({ movie }) {
         >
           Remove
         </button>
-        <button>More Info</button>
+        <button
+          onClick={() =>
+            dispatch({ type: "SET_SELECTED_MOVIE_ID", payload: movie.imdbID })
+          }
+        >
+          <Link to="/more-info" className="more-info-link">
+            More Info
+          </Link>
+        </button>
       </div>
     </div>
   );

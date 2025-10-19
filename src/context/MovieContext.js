@@ -18,6 +18,7 @@ const initialState = {
   lessThan3CharInput: false,
   watchedMovies: storedData.watchedMovies,
   likedMovies: storedData.likedMovies,
+  selectedMovieId: null,
 };
 
 function reducer(state, action) {
@@ -80,6 +81,11 @@ function reducer(state, action) {
         likedMovies: state.likedMovies.filter(
           (movie) => movie.imdbID !== action.payload
         ),
+      };
+    case "SET_SELECTED_MOVIE_ID":
+      return {
+        ...state,
+        selectedMovieId: action.payload,
       };
 
     default:

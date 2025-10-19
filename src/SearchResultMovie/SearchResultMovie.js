@@ -73,7 +73,13 @@ function SearchResultMovie({ movie }) {
             </button>
           )}
 
-          <button>More Details</button>
+          <button
+            onClick={() =>
+              dispatch({ type: "SET_SELECTED_MOVIE_ID", payload: movie.imdbID })
+            }
+          >
+            More Info
+          </button>
         </div>
       </div>
     </div>

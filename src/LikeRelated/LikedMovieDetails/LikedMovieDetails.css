@@ -53,8 +53,34 @@
   gap: 1.2rem;
 }
 
-.liked-movie-data h2 {
+.liked-movie-name {
   font-size: 2.4rem;
+}
+
+.liked-movie-name {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.liked-movie-name::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 20%;
+  background: linear-gradient(
+    to right,
+    var(--primary-color-shade),
+    var(--primary-color-tint)
+  );
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+.liked-movie-name:hover::before {
+  width: 100%;
 }
 
 .liked-movie-data-key {

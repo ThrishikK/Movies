@@ -21,7 +21,7 @@ function App() {
             <Route path="/watched" element={<WatchedMovies />} />
             <Route path="/liked" element={<LikedMovies />} />
             <Route path="/recommended" element={<RecommendedMovies />} />
-            <Route path="//more-info" element={<MovieFullDetailsContainer />} />
+            <Route path="/more-info" element={<MovieFullDetailsContainer />} />
           </Routes>
         </BrowserRouter>
       </MovieProvider>

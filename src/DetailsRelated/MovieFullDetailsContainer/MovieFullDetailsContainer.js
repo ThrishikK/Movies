@@ -1,11 +1,14 @@
+import { useState, useContext, useEffect } from "react";
+import { MovieContext } from "../../context/MovieContext";
+
 import EmptyContainer from "../../EmptyContainer/EmptyContainer";
 import FullDetailsLoader from "../FullDetailsLoader/FullDetailsLoader";
 import FullDetailsComponent from "../FullDetailsComponent/FullDetailsComponent";
 import "./MovieFullDetailsContainer.css";
 
 const APIKEY = "885b416e";
-const movieId = "tt3896198";
-const urlById = `https://www.omdbapi.com/?i=${movieId}&apikey=${APIKEY}`;
+// const movieId = "tt3896198";
+// const urlById = `https://www.omdbapi.com/?i=${movieId}&apikey=${APIKEY}`;
 
 const movieDetailsArray = [
   {
@@ -89,9 +92,42 @@ const movieDetailsArray = [
 ];
 
 function MovieFullDetailsContainer() {
+  const { state } = useContext(MovieContext);
+  const { selectedMovieId } = state;
+  const [loadingFullMovieDetails, setLoadingFullMovieDetails] = useState(false);
+  const [movieDetails, setMovieDetails] = useState(null);
+
+  useEffect(
+    function () {
+      if (selectedMovieId) {
+        setLoadingFullMovieDetails(true);
+        //fetch movie details by id
+        const fetchMovieDetailsById = async function () {
+          try {
+            const response = await fetch(
+              `https://www.omdbapi.com/?i=${selectedMovieId}&apikey=${APIKEY}`
+            );
+            const data = await response.json();
+            setMovieDetails(data);
+          } catch (error) {
+            console.error("Error fetching movie details:", error);
+          } finally {
+            setLoadingFullMovieDetails(false);
+          }
+        };
+        fetchMovieDetailsById();
+      }
+    },
+    [selectedMovieId]
+  );
+
   return (
     <section className="movie-full-details-section">
-      <FullDetailsComponent details={movieDetailsArray[1]} />
+      {!selectedMovieId && !loadingFullMovieDetails && (
+        <EmptyContainer message="Click on any movie to get more details in liked or watched sections." />
+      )}
+      {loadingFullMovieDetails && <FullDetailsLoader />}
+      {movieDetails && <FullDetailsComponent details={movieDetails} />}
     </section>
   );
 }
