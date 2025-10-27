@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import "./WatchedMovieDetails.css";
 import { MovieContext } from "../../context/MovieContext";
+import { Link } from "react-router-dom";
+
 // import "../HelperStyles/HelperStyles.css";
 
 // const roughData = {
@@ -51,7 +53,9 @@ function WatchedMovieDetails({ movie }) {
             dispatch({ type: "SET_SELECTED_MOVIE_ID", payload: movie.imdbID })
           }
         >
-          More Info
+          <Link to="/more-info" className="more-info-link">
+            More Info
+          </Link>
         </button>{" "}
       </div>
     </div>

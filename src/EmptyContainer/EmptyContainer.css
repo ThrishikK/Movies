@@ -4,9 +4,16 @@
   height: calc(10rem + 3vw);
   color: var(--primary-color-shade);
   border-radius: 1rem;
+  padding: 1rem;
   /*  */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 43.75em) {
+  .empty-container {
+    width: calc(100% - 4rem);
+  }
 }

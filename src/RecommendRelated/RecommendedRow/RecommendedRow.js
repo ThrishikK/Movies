@@ -40,7 +40,7 @@ function RecommendedRow({ movieNamesObject }) {
   useEffect(() => {
     const handleResize = () => {
       // Update radius based on new window width
-      const newRadius = window.innerWidth / 3;
+      const newRadius = window.innerWidth / 2;
       console.log(newRadius);
       setRadius(newRadius);
     };

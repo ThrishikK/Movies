@@ -3,6 +3,34 @@
   height: 100vh;
 }
 
+.heading-and-btns-container {
+  max-width: 120rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.movie-series-filter {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.selected-button {
+  background-color: var(--primary-color-shade);
+  color: var(--primary-color-tint);
+  border: 2px solid var(--primary-color-tint);
+}
+
+.not-selected-button {
+  background-color: var(--primary-color-tint);
+  color: var(--primary-color-shade);
+  border: 2px solid var(--primary-color-shade);
+}
+
 .watched-movies-container {
   max-width: 120rem;
   margin: 1rem auto;
@@ -23,5 +51,7 @@
 @media (max-width: 37.5em) {
   .watched-movies-container {
     height: auto;
+    width: calc(100% - 3rem);
+    margin: 1rem;
   }
 }

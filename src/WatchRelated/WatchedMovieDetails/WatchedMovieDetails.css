@@ -20,7 +20,7 @@
 
 @media (max-width: 43.75em) {
   .watched-movie-details {
-    width: calc(80%);
+    width: calc(90%);
   }
 }
 
