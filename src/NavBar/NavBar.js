@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import { useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVideo } from "@fortawesome/free-solid-svg-icons";
+
 import "./NavBar.css";
 
 function NavBar() {
@@ -12,7 +15,9 @@ function NavBar() {
   return (
     <nav className="navbar">
       <div className="logo">
-        <Link to="/">MyLogo</Link>
+        <Link to="/">
+          <FontAwesomeIcon icon={faVideo} />
+        </Link>
       </div>
       <ul className="nav-links" ref={hamToggling}>
         <li>

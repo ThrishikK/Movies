@@ -1,7 +1,16 @@
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { MovieContext } from "../context/MovieContext";
 
 import "./SearchResultMovie.css";
+
+const unavailableMoviePosters = [
+  "https://plus.unsplash.com/premium_photo-1710961232986-36cead00da3c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=484",
+  "https://images.unsplash.com/photo-1623179007436-1d366e78ba68?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=774",
+  "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlsbXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500",
+  "https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1031",
+  "https://images.unsplash.com/photo-1595769816263-9b910be24d5f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=879",
+];
 
 function SearchResultMovie({ movie }) {
   const { state, dispatch } = useContext(MovieContext);
@@ -15,13 +24,18 @@ function SearchResultMovie({ movie }) {
 
   console.log(alreadyWatched);
 
+  const movieImage =
+    movie.Poster === "N/A"
+      ? unavailableMoviePosters[Math.floor(Math.random() * 5)]
+      : movie.Poster;
+
   return (
     <div className="search-result-movie-container">
       <div className="movie-text-container">
         <div className="details-container">
           {/* IMAGE */}
           <div className="image-container">
-            <img src={movie.Poster} alt={movie.Title} />
+            <img src={movieImage} alt={movie.Title} />
           </div>{" "}
           {/*  */}
           {/* KEY VALUE PAIRS */}
@@ -78,7 +92,9 @@ function SearchResultMovie({ movie }) {
               dispatch({ type: "SET_SELECTED_MOVIE_ID", payload: movie.imdbID })
             }
           >
-            More Info
+            <Link to="/more-info" className="more-info-link">
+              More Info
+            </Link>
           </button>
         </div>
       </div>
