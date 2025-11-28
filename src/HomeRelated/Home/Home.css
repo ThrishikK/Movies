@@ -1,0 +1,26 @@
+.home-container {
+  margin: 1rem;
+  padding: 1rem;
+  max-width: 120rem;
+  background-color: var(--primary-color-shade);
+  color: var(--primary-color-tint);
+}
+
+.filter-btns {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+@media (max-width: 25em) {
+  .filter-btns {
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+  }
+}
+
+.main-holder {
+  margin: 1rem 2rem;
+}

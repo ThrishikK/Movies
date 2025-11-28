@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MovieProvider } from "../context/MovieContext";
 import NavBar from "../NavBar/NavBar";
+import Home from "../HomeRelated/Home/Home";
 import Search from "../Search/Search";
 import WatchedMovies from "../WatchedMovies/WatchedMovies";
 import LikedMovies from "../LikedMovies/LikedMovies";
@@ -17,6 +18,7 @@ function App() {
         <BrowserRouter basename="/Movies">
           <NavBar />
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
             <Route path="/watched" element={<WatchedMovies />} />
             <Route path="/liked" element={<LikedMovies />} />
